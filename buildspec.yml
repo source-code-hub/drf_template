@@ -1,0 +1,12 @@
+version: 0.2
+
+phases:
+  post_build:
+    commands:
+      - echo Entered the post_build phase...
+      - echo Copying required files from S3
+      - aws s3 cp s3://<config_bucket>/$ENV_CONFIG_FILE_NAME $CODEBUILD_SRC_DIR/src/.ebextensions
+      - echo Post Build completed
+artifacts:
+  files: '**/*'
+  base-directory: $CODEBUILD_SRC_DIR/src

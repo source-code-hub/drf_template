@@ -1,11 +1,8 @@
-from django.contrib import admin
-from django.urls import path
-
-from django.urls import re_path
+from django.urls import re_path, include
 from rest_framework.documentation import include_docs_urls
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    re_path(r'v1/', include('api.users.urls')),
 ]
 
 urlpatterns.append(re_path(r'^docs/', include_docs_urls(title='API Reference document',
